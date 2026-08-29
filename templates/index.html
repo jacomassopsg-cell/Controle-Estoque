@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Controle Logística — Fluxo Operacional</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <section id="loginScreen" class="login-screen">
+    <div class="login-panel">
+      <div class="login-logo">CL</div>
+      <h1>CONTROLE LOGÍSTICA</h1>
+      <p>Fluxo integrado, simples e rastreável</p>
+      <label>Usuário</label>
+      <input id="loginUsername" value="recebimento" autocomplete="username">
+      <label>Senha</label>
+      <input id="loginPassword" type="password" value="1234" autocomplete="current-password">
+      <button class="primary full" onclick="doLogin()">Entrar</button>
+      <div class="login-help">
+        <b>Recebimento:</b> recebimento / 1234<br>
+        <b>Qualidade:</b> qualidade1 / 1234 ou qualidade2 / 1234<br>
+        <b>Processamento:</b> processamento1 / 1234 ou processamento2 / 1234<br>
+        <b>Etiquetagem:</b> etiquetagem1 / 1234 ou etiquetagem2 / 1234<br>
+        <b>Estocagem:</b> estocagem1 / 1234 ou estocagem2 / 1234<br>
+        <b>Supervisão:</b> supervisor / 1234<br>
+        <b>Administração:</b> admin / 1234
+      </div>
+      <div id="loginError" class="error-message"></div>
+    </div>
+  </section>
+
+  <div id="appShell" class="app-shell hidden">
+    <aside class="sidebar">
+      <div class="brand-block">
+        <div class="brand-logo">CL</div>
+        <div><strong>CONTROLE</strong><br>LOGÍSTICA</div>
+      </div>
+      <nav>
+        <button class="nav-item active" data-view="dashboard" onclick="goTo('dashboard')">▦ Dashboard</button>
+        <button class="nav-item" data-view="receiving" onclick="goTo('receiving')">▣ Recebimento</button>
+        <button class="nav-item" data-view="quality" onclick="goTo('quality')">✓ Qualidade</button>
+        <button class="nav-item" data-view="processing" onclick="goTo('processing')">⚙ Processamento</button>
+        <button class="nav-item" data-view="labeling" onclick="goTo('labeling')">⌁ Etiquetagem</button>
+        <button class="nav-item" data-view="storage" onclick="goTo('storage')">▤ Estocagem</button>
+        <button class="nav-item" data-view="import" onclick="goTo('import')">⇧ Importar Excel</button>
+        <button class="nav-item" data-view="test" onclick="goTo('test')">⚙ Ferramentas de teste</button>
+        <button class="nav-item" data-view="history" onclick="goTo('history')">◷ Histórico</button>
+      </nav>
+      <div class="sidebar-footer">
+        <div id="currentUser"></div>
+        <button onclick="logout()">Sair</button>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div>
+          <h2 id="pageTitle">Dashboard</h2>
+          <p id="pageSubtitle">Recebimento, Qualidade e Processamento</p>
+        </div>
+        <div class="topbar-actions">
+          <span id="clock"></span>
+          <button class="secondary" onclick="refreshCurrentView()">Atualizar</button>
+        </div>
+      </header>
+      <section id="mainContent" class="content"></section>
+    </main>
+  </div>
+
+  <div id="modal" class="modal hidden">
+    <div class="modal-card">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
